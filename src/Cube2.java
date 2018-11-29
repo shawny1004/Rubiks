@@ -5,7 +5,8 @@ public class Cube2 {
   //stores the 2*2*2 cube status
 
   int[][] status;
-  String[] actionList;
+
+  String actions;
 
   public Cube2() {
     status = new int[4][6];
@@ -14,6 +15,7 @@ public class Cube2 {
         status[c][f] = f + 1;
       }
     }
+<<<<<<< HEAD
     actionList = new String[]{"R","R'","L","L'","F","F'","U","U'","B","B'","D","D'"};
   }
 
@@ -149,6 +151,9 @@ public class Cube2 {
       case("D'"):
         break;
     }
+=======
+    actions = "";
+>>>>>>> 19ba31b83b7487a89b44d9cbb44b691795e14315
   }
 
 
