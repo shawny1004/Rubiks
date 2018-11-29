@@ -16,6 +16,7 @@ public class Cube2 {
       }
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     actionList = new String[]{"R","R'","L","L'","F","F'","U","U'","B","B'","D","D'"};
   }
 
@@ -315,8 +316,9 @@ public class Cube2 {
         break;
     }
 =======
+=======
+>>>>>>> 1a133be3f762150adbfbb92f534b98a471649aca
     actions = "";
->>>>>>> 19ba31b83b7487a89b44d9cbb44b691795e14315
   }
 
 
