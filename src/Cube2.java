@@ -78,8 +78,51 @@ public class Cube2 {
         break;
 
       case("L"):
+        int Lfront0 = status[0][2];
+        int Lfront2 = status[2][2];
+
+        status[0][2]=status[0][0];
+        status[2][2]=status[2][0];
+
+        status[0][0]=status[3][4];
+        status[2][0]=status[1][4];
+
+        status[3][4]=status[0][5];
+        status[1][4]=status[2][5];
+
+        status[0][5]=Lfront0;
+        status[2][5]=Lfront2;
+
+        int Lside1 = status[0][1];
+        status[0][3] = status[2][3];
+        status[2][3] = status[3][3];
+        status[3][3] = status[1][3];
+        status[1][3] = Lside1;
         break;
+
       case("L'"):
+
+        int Lfront0 = status[0][2];
+        int Lfront2 = status[2][2];
+
+        status[0][2]=status[0][0];
+        status[2][2]=status[2][0];
+
+        status[0][0]=status[3][4];
+        status[2][0]=status[1][4];
+
+        status[3][4]=status[0][5];
+        status[1][4]=status[2][5];
+
+        status[0][5]=Lfront0;
+        status[2][5]=Lfront2;
+
+        int Lside1 = status[0][1];
+        status[0][3] = status[2][3];
+        status[2][3] = status[3][3];
+        status[3][3] = status[1][3];
+        status[1][3] = Lside1;
+
         break;
 
       case("U"):
