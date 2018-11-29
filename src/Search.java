@@ -6,7 +6,7 @@ public class Search {
 
   static String[] actionList = new String[]{"R", "R'", "L", "L'", "F", "F'", "U", "U'", "B", "B'",
       "D", "D'"};
-  ;
+
 
   public Search(Cube2 startState) {
     this.startState = startState;
@@ -20,7 +20,11 @@ public class Search {
     }
   }
 
-  public void shift(Cube2 cube, String action) {
+  public Cube2 shift(Cube2 cube1, String action) {
+    Cube2 cube = new Cube2();
+    cube.status = cube1.status;
+    cube.actions+=(action+", ");
+
     switch(action.toUpperCase()){
       case("R"):
 
@@ -306,6 +310,8 @@ public class Search {
         cube.status[2][5] = Dpside5;
         break;
     }
+
+    return cube;
   }
 
   public String OptmisticSearch() {
