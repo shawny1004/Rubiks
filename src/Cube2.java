@@ -100,7 +100,7 @@ public class Cube2 {
         status[1][3] = Lside1;
         break;
 
-      case("L'"):
+      case("L'"): //////
 
         int Lfront0 = status[0][2];
         int Lfront2 = status[2][2];
