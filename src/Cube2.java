@@ -96,59 +96,222 @@ public class Cube2 {
         status[2][5]=Lfront2;
 
         int Lside1 = status[0][1];
-        status[0][3] = status[2][3];
-        status[2][3] = status[3][3];
-        status[3][3] = status[1][3];
-        status[1][3] = Lside1;
+        status[0][1] = status[2][1];
+        status[2][1] = status[3][1];
+        status[3][1] = status[1][1];
+        status[1][1] = Lside1;
         break;
 
       case("L'"): //////
 
-        int Lfront0 = status[0][2];
-        int Lfront2 = status[2][2];
+        int Lpfront0 = status[0][2];
+        int Lpfront2 = status[2][2];
 
-        status[0][2]=status[0][0];
-        status[2][2]=status[2][0];
+        status[0][2]=status[0][5];
+        status[2][2]=status[2][5];
 
-        status[0][0]=status[3][4];
-        status[2][0]=status[1][4];
+        status[0][5]=status[3][4];
+        status[2][5]=status[1][4];
 
-        status[3][4]=status[0][5];
-        status[1][4]=status[2][5];
+        status[3][4]=status[0][0];
+        status[1][4]=status[2][0];
 
-        status[0][5]=Lfront0;
-        status[2][5]=Lfront2;
+        status[0][0]=Lpfront0;
+        status[2][0]=Lpfront2;
 
-        int Lside1 = status[0][1];
-        status[0][3] = status[2][3];
-        status[2][3] = status[3][3];
-        status[3][3] = status[1][3];
-        status[1][3] = Lside1;
+        int Lpside1 = status[0][1];
+        status[0][1] = status[2][1];
+        status[2][1] = status[3][1];
+        status[3][1] = status[4][1];
+        status[4][1] = Lpside1;
 
         break;
 
       case("U"):
+        int Ufront0 = status[0][2];
+        int Ufront1 = status[1][2];
+
+        status[0][2]=status[0][3];
+        status[1][2]=status[1][3];
+
+        status[0][3]=status[0][4];
+        status[1][3]=status[1][4];
+
+        status[0][4]=status[0][1];
+        status[1][4]=status[1][1];
+
+        status[0][1]=Ufront0;
+        status[1][1]=Ufront1;
+
+        int Uside0 = status[1][0];
+        status[1][0] = status[0][0];
+        status[0][0] = status[2][0];
+        status[2][0] = status[3][0];
+        status[3][0] = Uside0;
         break;
 
+
+
       case("U'"):
+        int Upfront0 = status[0][2];
+        int Upfront1 = status[1][2];
+
+        status[0][2]=status[1][1];
+        status[1][2]=status[0][1];
+
+        status[1][1]=status[1][4];
+        status[0][1]=status[0][4];
+
+        status[1][4]=status[1][3];
+        status[0][4]=status[0][3];
+
+        status[1][3]=Upfront1;
+        status[0][3]=Upfront0;
+
+        int Upside0 = status[1][0];
+        status[1][0] = status[3][0];
+        status[3][0] = status[2][0];
+        status[2][0] = status[0][0];
+        status[0][0] = Upside0;
         break;
 
       case("F"):
+        int Ffront2 = status[2][0];
+        int Ffront3 = status[3][0];
+
+        status[2][0]=status[3][1];
+        status[3][0]=status[1][1];
+
+        status[3][1]=status[1][5];
+        status[1][1]=status[0][5];
+
+        status[1][5]=status[0][3];
+        status[0][5]=status[2][3];
+
+        status[0][3]=Ffront2;
+        status[2][3]=Ffront3;
+
+        int Fpside2 = status[0][2];
+        status[0][2] = status[2][2];
+        status[2][2] = status[3][2];
+        status[3][2] = status[1][2];
+        status[1][2] = Fpside2;
         break;
 
       case("F'"):
+        int Ffront2 = status[2][0];
+        int Ffront3 = status[3][0];
+
+        status[2][0]=status[0][3];
+        status[3][0]=status[2][3];
+
+        status[0][3]=status[1][5];
+        status[2][3]=status[0][5];
+
+        status[1][5]=status[3][1];
+        status[0][5]=status[1][1];
+
+        status[3][1]=Ffront2;
+        status[1][1]=Ffront3;
+
+        int Fpside2 = status[0][2];
+        status[0][2] = status[1][2];
+        status[1][2] = status[3][2];
+        status[3][2] = status[2][2];
+        status[2][2] = Fpside2;
         break;
 
       case("B"):
+        int Bfront0 = status[0][0];
+        int Bfront1 = status[1][0];
+
+        status[0][0]=status[1][3];
+        status[1][0]=status[3][3];
+
+        status[1][3]=status[3][5];
+        status[3][3]=status[2][5];
+
+        status[3][5]=status[2][1];
+        status[2][5]=status[0][1];
+
+        status[2][1]=Bfront0;
+        status[0][1]=Bfront1;
+
+        int Bside4 = status[0][4];
+        status[0][4] = status[2][4];
+        status[2][4] = status[3][4];
+        status[3][4] = status[1][4];
+        status[1][4] = Bside4;
+
         break;
 
       case("B'"):
+        int Bpfront0 = status[0][0];
+        int Bpfront1 = status[1][0];
+
+        status[0][0]=status[2][1];
+        status[1][0]=status[0][1];
+
+        status[2][1]=status[2][5];
+        status[0][1]=status[3][5];
+
+        status[2][5]=status[3][3];
+        status[3][5]=status[1][3];
+
+        status[3][3]=Bpfront1;
+        status[1][3]=Bpfront0;
+
+        int Bpside4 = status[0][4];
+        status[0][4] = status[1][4];
+        status[1][4] = status[3][4];
+        status[3][4] = status[2][4];
+        status[2][4] = Bpside4;
         break;
 
       case("D"):
+        int Dfront2 = status[2][2];
+        int Dfront3 = status[3][2];
+
+        status[2][2]=status[2][1];
+        status[3][2]=status[3][1];
+
+        status[2][1]=status[2][4];
+        status[3][1]=status[3][4];
+
+        status[2][4]=status[2][3];
+        status[3][4]=status[3][3];
+
+        status[2][3]=Dfront2;
+        status[3][3]=Dfront3;
+
+        int Dside5 = status[0][5];
+        status[0][5] = status[2][5];
+        status[2][5] = status[3][5];
+        status[3][5] = status[1][5];
+        status[1][5] = Dside5;
         break;
 
       case("D'"):
+        int Dpfront2 = status[2][2];
+        int Dpfront3 = status[3][2];
+
+        status[2][2]=status[2][3];
+        status[3][2]=status[3][3];
+
+        status[2][3]=status[2][4];
+        status[3][3]=status[3][4];
+
+        status[2][4]=status[2][1];
+        status[3][4]=status[3][1];
+
+        status[2][1]=Dpfront2;
+        status[3][1]=Dpfront3;
+
+        int Dpside5 = status[0][5];
+        status[0][5] = status[1][5];
+        status[1][5] = status[3][5];
+        status[3][5] = status[2][5];
+        status[2][5] = Dpside5;
         break;
     }
 =======
