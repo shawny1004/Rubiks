@@ -123,10 +123,10 @@ public class Search {
         cube.status[2][0] = Lpfront2;
 
         int Lpside1 = cube.status[0][1];
-        cube.status[0][1] = cube.status[2][1];
-        cube.status[2][1] = cube.status[3][1];
-        cube.status[3][1] = cube.status[4][1];
-        cube.status[4][1] = Lpside1;
+        cube.status[0][1] = cube.status[1][1];
+        cube.status[1][1] = cube.status[3][1];
+        cube.status[3][1] = cube.status[2][1];
+        cube.status[2][1] = Lpside1;
 
         break;
 
