@@ -8,11 +8,11 @@ public class Search {
 
   Cube2 startState;
 
-  static String[] actionList1 = new String[]{"R", "r", "L", "l"};
-  static String[] actionList2 = new String[]{"F", "f", "B", "b"};
-  static String[] actionList3 = new String[]{"U", "u", "D", "d"};
-  static String[] actionListAll = new String[]{"R", "r", "L", "l", "F", "f", "B", "b", "U",
-      "u", "D", "d"};
+  static char[] actionList1 = new char[]{'R', 'r', 'L', 'l'};
+  static char[] actionList2 = new char[]{'F', 'f', 'B', 'b'};
+  static char[] actionList3 = new char[]{'U', 'u', 'D', 'd'};
+  static char[] actionListAll = new char[]{'R', 'r', 'L', 'l', 'F', 'f', 'B', 'b', 'U',
+      'u', 'D', 'd'};
 
   public Search(Cube2 startState) {
     this.startState = startState;
@@ -22,18 +22,18 @@ public class Search {
     Random ran = new Random();
     for (int i = 0; i < 50; i++) {
       int index = ran.nextInt(12);
-      this.startState = this.shift(this.startState, actionListAll[index]);
+      this.startState = shift(this.startState, actionListAll[index]);
     }
   }
 
-  public Cube2 shift(Cube2 cube1, String action) {
+  public static Cube2 shift(Cube2 cube1, char action) {
 
     Cube2 cube = new Cube2(0);
     cube.status = cube1.status;
     cube.actions += (cube1.actions + action);
 
-    switch (action.toUpperCase()) {
-      case ("R"):
+    switch (action) {
+      case ('R'):
 
         int Rfront1 = cube.status[1][2];
         int Rfront3 = cube.status[3][2];
@@ -58,7 +58,7 @@ public class Search {
 
         break;
 
-      case ("r"):
+      case ('r'):
 
         int Rpfront1 = cube.status[1][2];
         int Rpfront3 = cube.status[3][2];
@@ -82,7 +82,7 @@ public class Search {
         cube.status[2][3] = Rpside1;
         break;
 
-      case ("L"):
+      case ('L'):
         int Lfront0 = cube.status[0][2];
         int Lfront2 = cube.status[2][2];
 
@@ -105,7 +105,7 @@ public class Search {
         cube.status[1][1] = Lside1;
         break;
 
-      case ("l"): //////
+      case ('l'): //////
 
         int Lpfront0 = cube.status[0][2];
         int Lpfront2 = cube.status[2][2];
@@ -130,7 +130,7 @@ public class Search {
 
         break;
 
-      case ("U"):
+      case ('U'):
         int Ufront0 = cube.status[0][2];
         int Ufront1 = cube.status[1][2];
 
@@ -153,7 +153,7 @@ public class Search {
         cube.status[3][0] = Uside0;
         break;
 
-      case ("u"):
+      case ('u'):
         int Upfront0 = cube.status[0][2];
         int Upfront1 = cube.status[1][2];
 
@@ -176,7 +176,7 @@ public class Search {
         cube.status[0][0] = Upside0;
         break;
 
-      case ("F"):
+      case ('F'):
         int Ffront2 = cube.status[2][0];
         int Ffront3 = cube.status[3][0];
 
@@ -199,7 +199,7 @@ public class Search {
         cube.status[1][2] = Fside2;
         break;
 
-      case ("f"):
+      case ('f'):
         int Fpfront2 = cube.status[2][0];
         int Fpfront3 = cube.status[3][0];
 
@@ -222,7 +222,7 @@ public class Search {
         cube.status[2][2] = Fpside2;
         break;
 
-      case ("B"):
+      case ('B'):
         int Bfront0 = cube.status[0][0];
         int Bfront1 = cube.status[1][0];
 
@@ -246,7 +246,7 @@ public class Search {
 
         break;
 
-      case ("b"):
+      case ('b'):
         int Bpfront0 = cube.status[0][0];
         int Bpfront1 = cube.status[1][0];
 
@@ -269,7 +269,7 @@ public class Search {
         cube.status[2][4] = Bpside4;
         break;
 
-      case ("D"):
+      case ('D'):
         int Dfront2 = cube.status[2][2];
         int Dfront3 = cube.status[3][2];
 
@@ -292,7 +292,7 @@ public class Search {
         cube.status[1][5] = Dside5;
         break;
 
-      case ("d"):
+      case ('d'):
         int Dpfront2 = cube.status[2][2];
         int Dpfront3 = cube.status[3][2];
 
@@ -327,23 +327,38 @@ public class Search {
     int count = 0;
     char lastAction;
     while (!checkAllSuccess(current)) {
-        if(visited.contains(current)){
-          continue;
+      if (visited.contains(current)) {
+        continue;
+      }
+      lastAction = current.actions.charAt(current.actions.length() - 1);
+      if (lastAction == '0') {
+        for (char c : actionListAll) {
+          ((LinkedList<Cube2>) fringe).add(Search.shift(current, c));
+        }
+      } else if (catergorizeAction(lastAction) == 1) {
+        for (char c : actionList2) {
+          ((LinkedList<Cube2>) fringe).add(Search.shift(current, c));
+        }
+        for (char c : actionList3) {
+          ((LinkedList<Cube2>) fringe).add(Search.shift(current, c));
+        }
+      } else if (catergorizeAction(lastAction) == 2) {
+        for (char c : actionList1) {
+          ((LinkedList<Cube2>) fringe).add(Search.shift(current, c));
+        }
+        for (char c : actionList3) {
+          ((LinkedList<Cube2>) fringe).add(Search.shift(current, c));
         }
 
-        lastAction=current.actions.charAt(current.actions.length()-1);
-        if(lastAction=='0'){
-
-        }else if(catergorizeAction(lastAction)==1){
-
-        }else if(catergorizeAction(lastAction)==2){
-
-        }else if(catergorizeAction(lastAction)==3){
-
+      } else if (catergorizeAction(lastAction) == 3) {
+        for (char c : actionList1) {
+          ((LinkedList<Cube2>) fringe).add(Search.shift(current, c));
         }
-
-
-
+        for (char c : actionList2) {
+          ((LinkedList<Cube2>) fringe).add(Search.shift(current, c));
+        }
+      }
+      current = ((LinkedList<Cube2>) fringe).pollFirst();
 
       count++;
       if (count % 1000 == 0) {
@@ -365,14 +380,14 @@ public class Search {
     return true;
   }
 
-  public static int catergorizeAction(char c){
-    if(c=='R'||c=='r'||c=='L'||c=='l'){
+  public static int catergorizeAction(char c) {
+    if (c == 'R' || c == 'r' || c == 'L' || c == 'l') {
       return 1;
     }
-    if(c=='F'||c=='f'||c=='B'||c=='b'){
+    if (c == 'F' || c == 'f' || c == 'B' || c == 'b') {
       return 2;
     }
-    if(c=='U'||c=='u'||c=='D'||c=='d'){
+    if (c == 'U' || c == 'u' || c == 'D' || c == 'd') {
       return 3;
     }
     return 0;
