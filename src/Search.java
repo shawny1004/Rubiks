@@ -157,17 +157,17 @@ public class Search {
         int Upfront0 = cube.status[0][2];
         int Upfront1 = cube.status[1][2];
 
-        cube.status[0][2] = cube.status[1][1];
-        cube.status[1][2] = cube.status[0][1];
+        cube.status[0][2] = cube.status[0][1];
+        cube.status[1][2] = cube.status[1][1];
 
-        cube.status[1][1] = cube.status[1][4];
         cube.status[0][1] = cube.status[0][4];
+        cube.status[1][1] = cube.status[1][4];
 
-        cube.status[1][4] = cube.status[1][3];
         cube.status[0][4] = cube.status[0][3];
+        cube.status[1][4] = cube.status[1][3];
 
-        cube.status[1][3] = Upfront1;
         cube.status[0][3] = Upfront0;
+        cube.status[1][3] = Upfront1;
 
         int Upside0 = cube.status[1][0];
         cube.status[1][0] = cube.status[3][0];
@@ -253,14 +253,14 @@ public class Search {
         cube.status[0][0] = cube.status[2][1];
         cube.status[1][0] = cube.status[0][1];
 
-        cube.status[2][1] = cube.status[2][5];
-        cube.status[0][1] = cube.status[3][5];
+        cube.status[2][1] = cube.status[3][5];
+        cube.status[0][1] = cube.status[2][5];
 
-        cube.status[2][5] = cube.status[3][3];
         cube.status[3][5] = cube.status[1][3];
+        cube.status[2][5] = cube.status[3][3];
 
-        cube.status[3][3] = Bpfront1;
         cube.status[1][3] = Bpfront0;
+        cube.status[3][3] = Bpfront1;
 
         int Bpside4 = cube.status[0][4];
         cube.status[0][4] = cube.status[1][4];
